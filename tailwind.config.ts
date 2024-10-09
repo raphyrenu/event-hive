@@ -9,9 +9,14 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        background: "var(--background)",
-        foreground: "var(--foreground)",
-      },
+            background: "#000000",
+            foreground: "#ffffff",
+            primary: "#7848F4"
+          },
+        fontFamily: {
+            bayon: ['Bayon', 'sans-serif']
+          },
+        
     },
   },
   plugins: [],
