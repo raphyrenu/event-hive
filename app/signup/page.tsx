@@ -72,7 +72,7 @@ function Page() {
             password: "",
             confirmPassword: "",
           });
-          router.push("/success"); // Redirecting to the success page
+          router.push("/login");
         } else {
           alert(data.error);
         }

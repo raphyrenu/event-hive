@@ -11,12 +11,13 @@ const config: Config = {
       colors: {
             background: "#000000",
             foreground: "#ffffff",
-            primary: "#7848F4"
+            primary: "#7848F4",
+            primary2: "#160640",
           },
         fontFamily: {
             bayon: ['Bayon', 'sans-serif']
           },
-        
+
     },
   },
   plugins: [],

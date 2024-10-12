@@ -1,33 +1,92 @@
-// components/Sidebar.tsx
-import React from 'react';
+"use client";
+// app/components/Sidebar.tsx
+import React, { useEffect, useState } from 'react';
+import { useRouter } from 'next/navigation';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
+import { BiGridAlt, BiSend } from 'react-icons/bi';
+import { FiTv, FiUser, FiLogOut } from 'react-icons/fi'; // Added FiLogOut for the logout icon
 
+// Sidebar component
 const Sidebar: React.FC = () => {
+  const pathname = usePathname();
+  const router = useRouter();
+
+  // State to store user information
+  const [user, setUser] = useState<{ isAdmin: boolean } | null>(null);
+
+  useEffect(() => {
+    // Fetch user from local storage
+    const loggedUser = localStorage.getItem('user');
+    if (loggedUser) {
+      setUser(JSON.parse(loggedUser));
+    } else {
+      // Redirect to login page if not authenticated
+      router.push('/login');
+    }
+  }, [router]);
+
+  // Logout function
+  const handleLogout = () => {
+    // Clear user data from localStorage
+    localStorage.removeItem('user');
+    // Redirect to login or homepage after logout
+    router.push('/login');
+  };
+
+  // If no user is logged in, don't show the sidebar
+  if (!user) return null;
+
   return (
-    <div className="w-64 bg-gray-900 p-5">
-      <h1 className="text-xl font-bold mb-10">Event Hive</h1>
-      <ul className="space-y-4">
-        <li>
-          <Link href="/dashboard" className="text-gray-400 hover:text-white">
-            Dashboard
+    <div className="hidden h-full fixed lg:w-96 md:w-60 bg-foreground md:flex lg:flex flex-col px-10 pt-10 shadow-xl shadow-primary rounded-lg">
+      <h1 className="font-bayon font-extrabold mb-8  text-3xl text-gray-500">
+        Event <span className="text-primary2">Hive</span>
+      </h1>
+
+      <div className='w-full flex flex-col h-full py-12 font-bold text-xl'>
+        {/* Dashboard */}
+        <Link href="/dashboard" className={`flex flex-row items-center min-w-60 mb-4 py-4 px-4 rounded-md hover:bg-primary2 hover:text-white transition-all duration-500 ${pathname === '/dashboard' ? 'bg-primary2 text-foreground' : 'text-background'}`}>
+          <BiGridAlt size={25} className='inline mr-4' />
+          <p className='inline'>Dashboard</p>
+        </Link>
+
+        {/* Events */}
+        <Link href="/dashboard/events" className={`flex flex-row items-center min-w-60 px-4 rounded-md transition-all duration-500 hover:bg-primary2 py-4 mb-4 hover:text-white ${pathname === '/dashboard/events' ? 'bg-primary2 text-foreground' : 'text-background'}`}>
+          <FiTv size={25} className='inline mr-4' />
+          <p className='inline'>Events</p>
+        </Link>
+
+        {/* Create Event (only for admins) */}
+        {user.isAdmin && (
+          <Link href="/dashboard/create-event" className={`flex flex-row items-center min-w-60 px-4 rounded-md transition-all duration-500 hover:bg-primary2 py-4 mb-4 hover:text-white ${pathname === '/dashboard/create-event' ? 'bg-primary2 text-foreground' : 'text-background'}`}>
+            <FiUser size={25} className='inline mr-4' />
+            <p className='inline'>Create Event</p>
           </Link>
-        </li>
-        <li>
-          <Link href="/dashboard/events" className="text-gray-400 hover:text-white">
-            Events
-          </Link>
-        </li>
-        <li>
-          <Link href="#" className="text-gray-400 hover:text-white">
-            Messages
-          </Link>
-        </li>
-        <li>
-          <Link href="#" className="text-gray-400 hover:text-white">
-            Profile
-          </Link>
-        </li>
-      </ul>
+        )}
+
+        {/* Messages */}
+        <Link href="/dashboard/messages" className={` flex flex-row items-center min-w-60 px-4 rounded-md transition-all duration-500 hover:bg-primary2 py-4 mb-4 text-background hover:text-white ${pathname === '/dashboard/messages' ? 'bg-gray-800' : 'text-background'}`}>
+          <BiSend size={25} className='inline mr-4' />
+          <p className='inline'>Messages</p>
+        </Link>
+
+        {/* Profile */}
+        <Link href="/dashboard/profile" className={`flex flex-row items-center min-w-60 px-4 rounded-md transition-all duration-500 hover:bg-primary2 py-4 mb-4 text-background hover:text-white ${pathname === '/dashboard/profile' ? 'bg-gray-800' : 'text-background'}`}>
+          <FiUser size={25} className='inline mr-4' />
+          <p className='inline'>Profile</p>
+        </Link>
+
+        {/* Spacer to push logout button to the bottom */}
+        <div className="flex-grow"></div>
+
+        {/* Logout */}
+        <button
+          onClick={handleLogout}
+          className="flex flex-row items-center min-w-60 px-4 rounded-md transition-all duration-500 py-4 text-background">
+          <FiLogOut size={25} className="inline mr-4" />
+          <p className="inline">Logout</p>
+        </button>
+      </div>
     </div>
   );
 };

@@ -11,8 +11,10 @@ const RootLayout: React.FC<RootLayoutProps> = ({ children }) => {
     <html lang="en">
       <body className="bg-black text-white">
         <div className="flex h-screen">
-          <Sidebar />
-          <div className="flex-1 p-10">
+          <div className='h-full lg:flex md:hidden hidden lg:w-96'>
+              <Sidebar />
+          </div>
+          <div className="flex-1 p-4">
             {children}
           </div>
         </div>
