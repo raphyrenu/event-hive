@@ -83,13 +83,7 @@ const page = () => {
           Sign Up to Event Hive
         </h1>
 
-        {/* Show user information if available */}
-        {userInfo && (
-          <div className="mb-4">
-            <p className="text-lg">Welcome, {userInfo.name}!</p>
-            <p className="text-sm">Your email: {userInfo.email}</p>
-          </div>
-        )}
+      
 
         <form
           className="lg:w-3/5 w-full bg-transparent px-20 flex items-center justify-center flex-col rounded-md shadow-md"
