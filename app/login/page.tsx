@@ -150,8 +150,7 @@ const Page = () => {
         </form>
         {userInfo && (
           <div className="mt-4">
-            <p>Welcome, {userInfo.name}!</p>
-            <p>Your email: {userInfo.email}</p>
+          
           </div>
         )}
         or
