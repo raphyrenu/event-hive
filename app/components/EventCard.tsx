@@ -62,7 +62,8 @@ const EventCard: React.FC<EventCardProps> = ({ title, venue, author, date, image
       {/* Event card */}
       <div className="bg-white shadow-lg rounded-2xl overflow-hidden w-full max-w-96 px-3 pt-3 mx-auto transform transition-all hover:scale-105 duration-300">
         <div className="relative w-full h-48">
-          <Image
+                  <Image
+                      key={eventId}
             src={formattedImageUrl}
             alt={title}
             layout="fill"

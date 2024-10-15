@@ -16,7 +16,7 @@ const CreateEvent: React.FC = () => {
         description: "",
     });
     const [imagePreview, setImagePreview] = useState<string | null>(null); // Image preview state
-    const [isAdmin, setIsAdmin] = useState<boolean | null>(null);
+    // const [isAdmin, setIsAdmin] = useState<boolean | null>(null);
     const [loading, setLoading] = useState(true); // Loading state to prevent flashing
     const router = useRouter();
 
@@ -25,7 +25,7 @@ const CreateEvent: React.FC = () => {
         const loggedUser = localStorage.getItem("user");
         if (loggedUser) {
             const user = JSON.parse(loggedUser);
-            setIsAdmin(user.isAdmin);
+            
 
             // If not an admin, redirect to dashboard
             if (!user.isAdmin) {
