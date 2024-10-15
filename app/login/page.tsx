@@ -51,7 +51,7 @@ const Page = () => {
       } else {
         setErrorMessage(data.error);
       }
-    } catch{
+    } catch {
       setErrorMessage("An error occurred while logging in.");
     }
   };
@@ -148,6 +148,12 @@ const Page = () => {
             Login
           </button>
         </form>
+        {userInfo && (
+          <div className="mt-4">
+            <p>Welcome, {userInfo.name}!</p>
+            <p>Your email: {userInfo.email}</p>
+          </div>
+        )}
         or
         <button
           onClick={handleGoogleSignIn}
