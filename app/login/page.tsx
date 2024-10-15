@@ -51,7 +51,7 @@ const Page = () => {
       } else {
         setErrorMessage(data.error);
       }
-    } catch (error) {
+    } catch{
       setErrorMessage("An error occurred while logging in.");
     }
   };
