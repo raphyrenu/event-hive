@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import React, { useState, ChangeEvent, FormEvent, useEffect } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { useRouter } from "next/navigation";
@@ -11,7 +11,7 @@ interface LoginFormData {
   password: string;
 }
 
-const page = () => {
+const Page = () => {
   const [formData, setFormData] = useState<LoginFormData>({
     email: "",
     password: "",
@@ -82,8 +82,6 @@ const page = () => {
         <h1 className="lg:text-4xl text-3xl md:text-4xl font-bold mb-12 mt-10">
           Sign Up to Event Hive
         </h1>
-
-
 
         <form
           className="lg:w-3/5 w-full bg-transparent px-20 flex items-center justify-center flex-col rounded-md shadow-md"
@@ -187,4 +185,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;

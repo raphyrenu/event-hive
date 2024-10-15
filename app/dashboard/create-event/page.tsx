@@ -2,6 +2,7 @@
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import axios from "axios";
+import Image from "next/image"; // Import the Image component from next/image
 
 // CreateEvent component
 const CreateEvent: React.FC = () => {
@@ -16,16 +17,13 @@ const CreateEvent: React.FC = () => {
         description: "",
     });
     const [imagePreview, setImagePreview] = useState<string | null>(null); // Image preview state
-    // const [isAdmin, setIsAdmin] = useState<boolean | null>(null);
     const [loading, setLoading] = useState(true); // Loading state to prevent flashing
     const router = useRouter();
 
     useEffect(() => {
-
         const loggedUser = localStorage.getItem("user");
         if (loggedUser) {
             const user = JSON.parse(loggedUser);
-            
 
             // If not an admin, redirect to dashboard
             if (!user.isAdmin) {
@@ -98,7 +96,7 @@ const CreateEvent: React.FC = () => {
         <div className="min-h-screen pt-20 w-full flex items-center justify-center">
             <form
                 onSubmit={handleSubmit}
-                className="w-full max-w-3xl flex flex-col  rounded-lg shadow-lg"
+                className="w-full max-w-3xl flex flex-col rounded-lg shadow-lg"
                 encType="multipart/form-data"
             >
                 <h1 className="text-4xl font-bold mb-20 text-white text-center">
@@ -121,7 +119,7 @@ const CreateEvent: React.FC = () => {
                     </div>
 
                     {/* Event Venue */}
-                    <div className="">
+                    <div>
                         <label className="block font-bold text-white mb-2">Event Venue</label>
                         <input
                             type="text"
@@ -154,8 +152,6 @@ const CreateEvent: React.FC = () => {
                         <input
                             type="date"
                             name="startDate"
-                            placeholder="enter date"
-
                             value={eventData.startDate}
                             onChange={handleInputChange}
                             className="w-full px-5 outline-none mb-5 mt-1 py-4 text-black rounded-lg"
@@ -193,11 +189,15 @@ const CreateEvent: React.FC = () => {
                     {imagePreview && (
                         <div className="col-span-2 mb-4">
                             <h3 className="text-white mb-2 font-bold">Image Preview</h3>
-                            <img
-                                src={imagePreview}
-                                alt="Event Preview"
-                                className="w-full h-80 object-cover rounded-lg"
-                            />
+                            <div className="relative w-full h-80">
+                                <Image
+                                    src={imagePreview}
+                                    alt="Event Preview"
+                                    className="rounded-lg"
+                                    layout="fill"
+                                    objectFit="cover"
+                                />
+                            </div>
                         </div>
                     )}
 
@@ -206,11 +206,11 @@ const CreateEvent: React.FC = () => {
                         <label className="block font-bold text-white mb-5">Event Image</label>
                         <input
                             type="file"
-                            id="image" // Set id for the input
+                            id="image"
                             name="image"
                             accept="image/*"
                             onChange={handleImageChange}
-                            className="hidden" // Hide the default input
+                            className="hidden"
                         />
                         <label
                             htmlFor="image"
