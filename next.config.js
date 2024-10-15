@@ -2,7 +2,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
     images: {
-      domains: ['localhost'], // Allow localhost for images
+      domains: ['eventhive-unyb.onrender.com'], // Allow localhost for images
     },
   };
 

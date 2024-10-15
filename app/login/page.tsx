@@ -29,7 +29,7 @@ const page = () => {
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
-      const response = await fetch("http://localhost:5000/api/login", {
+      const response = await fetch("https://eventhive-unyb.onrender.com/api/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
@@ -83,7 +83,7 @@ const page = () => {
           Sign Up to Event Hive
         </h1>
 
-      
+
 
         <form
           className="lg:w-3/5 w-full bg-transparent px-20 flex items-center justify-center flex-col rounded-md shadow-md"

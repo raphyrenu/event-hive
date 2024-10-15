@@ -14,9 +14,9 @@ interface EventCardProps {
 }
 
 const EventCard: React.FC<EventCardProps> = ({ title, venue, author, date, imageUrl, eventId, description }) => {
-  const formattedImageUrl = imageUrl && imageUrl.startsWith('http')
+  const formattedImageUrl = imageUrl && imageUrl.startsWith('https')
     ? imageUrl
-    : `http://localhost:5000${imageUrl || ''}`;
+    : `https://eventhive-unyb.onrender.com${imageUrl || ''}`;
 
   const [user, setUser] = useState<{ isAdmin: boolean } | null>(null);
   const [showPopup, setShowPopup] = useState(false);

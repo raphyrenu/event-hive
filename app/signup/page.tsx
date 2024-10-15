@@ -55,7 +55,7 @@ function Page() {
 
     if (!passwordMatchError && formData.password.length >= 6) {
       try {
-        const response = await fetch("http://localhost:5000/api/register", {
+        const response = await fetch("https://eventhive-unyb.onrender.com/api/register", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",

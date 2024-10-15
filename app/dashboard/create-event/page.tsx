@@ -72,7 +72,7 @@ const CreateEvent: React.FC = () => {
         try {
             // Send POST request to create the event
             const response = await axios.post(
-                "http://localhost:5000/api/events/create",
+                "https://eventhive-unyb.onrender.com/api/events/create",
                 formData,
                 {
                     headers: {

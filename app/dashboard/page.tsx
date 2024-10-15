@@ -16,9 +16,9 @@ const AdminDashboard: React.FC = () => {
       try {
         // Fetch events, users, and bookings count concurrently
         const [eventsResponse, usersResponse, bookingsResponse] = await Promise.all([
-          axios.get("http://localhost:5000/api/admin/events"),
-          axios.get("http://localhost:5000/api/admin/users"),
-          axios.get("http://localhost:5000/api/admin/bookings/count"),
+          axios.get("https://eventhive-unyb.onrender.com/api/admin/events"),
+          axios.get("https://eventhive-unyb.onrender.com/api/admin/users"),
+          axios.get("https://eventhive-unyb.onrender.com/api/admin/bookings/count"),
         ]);
 
         setEvents(eventsResponse.data.events); // Set events data

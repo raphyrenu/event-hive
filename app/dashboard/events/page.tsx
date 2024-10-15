@@ -26,7 +26,7 @@ const EventsPage: React.FC = () => {
   // Fetch events from the API
   const fetchEvents = async () => {
     try {
-      const response = await fetch("http://localhost:5000/api/events"); // Make sure this matches your backend route
+      const response = await fetch("https://eventhive-unyb.onrender.com/api/events"); // Make sure this matches your backend route
       if (!response.ok) {
         throw new Error("Failed to fetch events");
       }
@@ -72,7 +72,7 @@ const EventsPage: React.FC = () => {
   return (
     <div className="p-6">
       {/* Search Bar */}
-      <div className="flex justify-end mb-6">
+      <div className="flex justify-end mb-6 mr-7">
         <input
           type="text"
           placeholder="Search for events..."
